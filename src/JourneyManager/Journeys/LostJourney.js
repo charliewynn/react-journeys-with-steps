@@ -1,6 +1,6 @@
 import NoticeStep from "../JourneySteps/NoticeStep";
 
-export default {
+const LostJourney = {
   name: "lost",
   steps: [
     {
@@ -12,3 +12,5 @@ export default {
     },
   ],
 };
+
+export default LostJourney;

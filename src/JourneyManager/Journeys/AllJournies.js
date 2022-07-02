@@ -1,4 +1,5 @@
 import FraudJourney from "./FraudJourney";
 import LostJourney from "./LostJourney";
 
-export default [FraudJourney, LostJourney];
+const AllJourneys = [FraudJourney, LostJourney];
+export default AllJourneys;

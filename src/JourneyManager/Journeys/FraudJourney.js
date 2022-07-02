@@ -3,7 +3,7 @@ import NoticeStep from "../JourneySteps/NoticeStep";
 import YesNoCustom from "../JourneySteps/YesNoCustom";
 import AdditionalString from "../JourneySteps/CustomSubComponents/AdditionalString";
 
-export default {
+const FraudJourney = {
   name: "fraud",
   steps: [
     {
@@ -53,3 +53,5 @@ export default {
     },
   ],
 };
+
+export default FraudJourney;

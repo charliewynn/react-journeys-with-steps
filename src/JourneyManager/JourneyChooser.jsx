@@ -9,7 +9,7 @@ function JourneyChooser({ goToNext }) {
 
   const renderJourney = (journey) => {
     const currentJourneyName = currentJourney ? currentJourney.name : null;
-    const isSelected = currentJourneyName == journey.name;
+    const isSelected = currentJourneyName === journey.name;
     return (
       <div
         key={journey.name}
