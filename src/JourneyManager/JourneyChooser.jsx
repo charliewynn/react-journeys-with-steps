@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PrevNextStepFooter from "./PrevNextStepFooter";
 
-import "../JourneyChooser.scss";
+import "../MultipleChoice.scss";
 import AllJournies from "./Journeys/AllJournies";
 
 function JourneyChooser({ goToNext }) {
@@ -23,7 +23,9 @@ function JourneyChooser({ goToNext }) {
   return (
     <div className="JourneyChooser">
       <div>Select a journey</div>
-      {AllJournies.map(renderJourney)}
+      <div className="MultipleChoiceSelector">
+        {AllJournies.map(renderJourney)}
+      </div>
 
       <PrevNextStepFooter
         nextDisabled={!currentJourney}

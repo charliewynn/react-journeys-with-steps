@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PrevNextStepFooter from "../PrevNextStepFooter";
-import "../../MultipleChoiceStep.scss";
+import "../../MultipleChoice.scss";
 
 function MultipleChoiceStep({ title, choices, goToPrev, goToNext }) {
   const [selectedChoice, setSelectedChoice] = useState(null);
@@ -18,11 +18,13 @@ function MultipleChoiceStep({ title, choices, goToPrev, goToNext }) {
     );
   };
 
-  const goToNextFn = selectedChoice ? goToNext : null;
+  // if they go to next, we choose which data to pass in to the step data
+  // in this case we will pass in the choice id
+  const goToNextFn = selectedChoice ? () => goToNext(selectedChoice.id) : null;
   return (
     <div className="MultipleChoiceStep">
       <div>{title}</div>
-      {choices.map(renderChoice)}
+      <div className="MultipleChoiceSelector">{choices.map(renderChoice)}</div>
       <PrevNextStepFooter goToPrev={goToPrev} goToNext={goToNextFn} />
     </div>
   );
