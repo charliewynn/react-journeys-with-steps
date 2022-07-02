@@ -1,0 +1,8 @@
+.MultipleChoiceStep {
+  .selected {
+    &::before {
+      content: ">";
+    }
+    font-weight: bold;
+  }
+}

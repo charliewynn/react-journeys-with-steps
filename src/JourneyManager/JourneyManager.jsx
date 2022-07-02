@@ -5,11 +5,19 @@ import JourneyChooser from "./JourneyChooser";
 function JourneyManager() {
   const [currentJourney, setCurrentJourney] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
+
   const changeJourney = (newJourney) => {
     setCurrentJourney(newJourney);
     setCurrentStep(0);
   };
 
+  const handlePrevStep = () => {
+    if (currentStep == 0) {
+      setCurrentJourney(null);
+    } else {
+      setCurrentStep(currentStep - 1);
+    }
+  };
   const handleNextStep = (lastStepData) => {
     console.log("Done with step: " + currentStep);
     console.log("Data from step: ", lastStepData);
@@ -17,6 +25,7 @@ function JourneyManager() {
     // need to see if journey is over
     setCurrentStep(currentStep + 1);
   };
+
   const errorStep = (error) => (
     <div>
       Something went wrong. You're on Journey "{currentJourney.name}"; Step:
@@ -33,13 +42,9 @@ function JourneyManager() {
       const journeyStep = currentJourney.steps[currentStep];
       const journeyStepProps = { ...journeyStep.props };
       journeyStepProps.goToNext = handleNextStep;
-      if (currentStep == 0) {
-        journeyStepProps.goToPrev = () => setCurrentJourney(null);
-      } else {
-        journeyStepProps.goToPrev = () => setCurrentStep(currentStep - 1);
-      }
+      journeyStepProps.goToPrev = handlePrevStep;
 
-      activeStep = journeyStep.step(journeyStepProps);
+      activeStep = <journeyStep.step {...journeyStepProps} />;
     } catch (error) {
       console.error(error);
       activeStep = errorStep(error);
