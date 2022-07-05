@@ -10,6 +10,8 @@ function YesNoCustom({ title, yesCustomComponent, goToPrev, goToNext }) {
     setSelectedChoice(choice);
     if (customComponent) {
       setCustomComponentData({ valid: false });
+    } else {
+      setCustomComponentData(null);
     }
   };
   const renderChoice = (choice, customComponent) => {
@@ -51,6 +53,8 @@ function YesNoCustom({ title, yesCustomComponent, goToPrev, goToNext }) {
         {renderChoice("No")}
       </div>
       <PrevNextStepFooter goToPrev={goToPrev} goToNext={goToNextFn} />
+      <hr />
+      <div>{JSON.stringify(customComponentData)}</div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import MultipleChoiceStep from "../JourneySteps/MultipleChoiceStep";
 import NoticeStep from "../JourneySteps/NoticeStep";
 import YesNoCustom from "../JourneySteps/YesNoCustom";
 import AdditionalString from "../JourneySteps/CustomSubComponents/AdditionalString";
+import MerchantInfo from "../JourneySteps/CustomSubComponents/MerchantInfo";
 
 const FraudJourney = {
   name: "fraud",
@@ -10,6 +11,12 @@ const FraudJourney = {
       step: YesNoCustom,
       props: {
         title: "You need to say yes or no...",
+        yesCustomComponent: {
+          component: MerchantInfo,
+          props: {
+            title: "input merchant info",
+          },
+        },
       },
     },
     {

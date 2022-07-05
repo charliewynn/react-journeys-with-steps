@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FinalDisclosureStep from "./FinalDisclosureStep";
 
 import JourneyChooser from "./JourneyChooser";
 
@@ -13,6 +14,15 @@ function JourneyManager() {
     //start over at step 0, reset the journey data
     setCurrentStep(0);
     setCurrentJourneyData({});
+  };
+
+  const submitJourneyResults = () => {
+    const resultData = { ...currentJourneyData, journey: currentJourney.name };
+    console.log("Journey Results...", resultData);
+    alert(
+      "Great, all done. Going back to beginning. (this should be an api call - not an alert...)"
+    );
+    changeJourney(null);
   };
 
   const handlePrevStep = () => {
@@ -30,7 +40,6 @@ function JourneyManager() {
     const currentData = { ...currentJourneyData };
     currentData["step_" + currentStep] = lastStepData;
     setCurrentJourneyData(currentData);
-    // need to see if journey is over
     setCurrentStep(currentStep + 1);
   };
 
@@ -46,6 +55,8 @@ function JourneyManager() {
   if (currentJourney == null) {
     // if there isn't a journey - render the chooser
     activeStep = <JourneyChooser goToNext={changeJourney} />;
+  } else if (currentJourney.steps.length === currentStep) {
+    activeStep = <FinalDisclosureStep goToNext={submitJourneyResults} />;
   } else {
     try {
       const journeyStep = currentJourney.steps[currentStep];
